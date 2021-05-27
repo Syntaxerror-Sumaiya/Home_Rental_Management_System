@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content  %}
+    {% if does_exists == True %}
+
+       <style>
+                      .card-section {
+                      width: 25rem;
+                      margin:20px auto;
+                      box-shadow: 0 5px 12px 2px rgba(0, 0, 0, 0.2);
+                    }
+                    .card-section img {
+                      width: 100%;
+                      height: 250px;
+                      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 36px));
+                    }
+                    .card-body h4 {
+                      margin: 0px;
+                      font-weight: bold;
+                      font-family: sans-serif;
+                      letter-spacing: 0.5px;
+                      color: skyblue;
+                    }
+                    .card-body {
+                      padding: 0px 15px 20px 15px;
+                    }
+                    .card-body .border-line{
+                      border-bottom:1px solid skyblue;
+                      border-width:3px;
+                      width:70px;
+                      margin:10px 0px;
+                    }
+                    .card-body .card-text{
+                      color:white;
+                      font-size:13px;
+                      letter-spacing:0.5px;
+                      margin-bottom:0px;
+                    }
+
+       </style>
+
+                <div class="card-section">
+                  <img src="{{ search.image1.url }}" width= "300" height="300" class="card-img-top" alt="...">
+                   <img src="{{ search.image2.url }}" width= "300" height="300" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h4 class="card-title">  {{ search.landlord.user.username }}</h4>
+                    <div class="border-line"></div>
+{#                      <h4 class="card-title">  {{ search.profile.contact_no }}</h4>#}
+                    <h6  class="card-title">Contact: 01990747505</h6>
+                     <h6 class="card-title">{{ search.id }} <br></h6>
+                     <h6 class="card-title">{{ search.house }} <br></h6>
+                     <h6 class="card-title">Area: {{ search.house.address.area}} <br></h6>
+                      <h6 class="card-title">Rent: {{ search.house.rent}} <br></h6>
+
+                  </div>
+                </div>
+
+    {% else %}
+         <h1>Sorry!! No Advertisment!!</h1>
+    {% endif %}
+
+
+{% endblock content %}

@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <title>Project</title>
+</head>
+<body style="background-color: peachpuff ">
+{#<svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-house-door-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">#}
+{#  <path d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"/>#}
+{#  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>#}
+{#</svg>#}
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: darksalmon;">
+
+
+  <br class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+      <li class="navbar-brand">
+  <a class="navbar-brand" href="{% url 'Advertisment' %}">
+    <h3>Home Rental Management System</h3>
+  </a>
+      </li>
+        {% if user.is_authenticated %}
+            {% if not landlord %}
+
+                {% endif %}
+
+            {% if landlord %}
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                <h5> {{ user.username }}</h5>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'create-profile' %}">Create Profile</a>
+              <a class="dropdown-item" href="{% url 'view-profile' %}">View Profile</a>
+{#              <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>#}
+
+            </div>
+          </li>
+            </li>
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <h5>Insert</h5>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+{#          <a class="dropdown-item" href="{% url '' %}">Landloard</a>#}
+          <a class="dropdown-item" href="{% url 'InsertHouse' %}">House</a>
+
+          <a class="dropdown-item" href="{% url 'InsertAdvertisment' %}">Advertisement</a>
+        </div>
+      </li>
+      {% endif %}
+
+        </li>
+            <li class="nav-item ">
+            <a class="dropdown-item" href="{% url 'Landlords'%}">Landlords</a>
+         </li>
+             </li>
+            <li class="nav-item ">
+            <a class="dropdown-item" href="{% url 'House' %}">House</a>
+         </li>
+
+            </li>
+
+            <li class="nav-item ">
+            <a class="dropdown-item" href="{% url 'Advertisment' %}">Advertisment</a>
+         </li>
+
+                <li class="nav-item ">
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                <a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
+        </li>
+
+    </ul>
+
+
+
+
+
+
+
+
+        <form method="POST" action="{% url 'Advertisment' %}">
+            {% csrf_token %}
+
+            <input  type="search" name="search">
+
+            <button  type="submit">Search</button>
+        </form>
+    {% endif %}
+      
+      {% if not user.is_authenticated %}
+
+   <ul class="navbar-nav mr-auto">
+        <a href="{% url 'Registration' %}" class="btn btn-outline-dark mr-2">Sign Up</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-dark">Login</a>
+
+   </ul>
+
+         <a class="navbar-brand" href="{% url 'Advertismentspicture' %}" class="btn btn-outline-primary">
+    <img src="/media/images/logo1.jpg" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
+
+  </a>
+
+
+
+
+
+
+      {% endif %}
+  </div>
+</nav>
+
+
+ <br>
+ <div class="container">
+
+    {% block content %}
+
+    {% endblock content %}
+
+</div>
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+</html>
